@@ -1,28 +1,45 @@
-const express = require("express")
-const mysql= require("mysql")
-const port = process.env.PORT || 3001
-
+const express = require("express");
+const mysql = require("mysql");
+const cors = require('cors');
+const port = process.env.PORT || 3001;
 const app = express();
-const connection = mysql.createConnection({
+
+// Middleware pour analyser le corps JSON des requêtes
+app.use(express.json());
+app.use(cors());
+
+const db = mysql.createConnection({
     host: 'localhost',
-    user : 'root',
-    password : '',
-    database : 'urbain',
-    socketPath :''
+    user: 'root',
+    password: '',
+    database: 'urbain'
 });
-connection.connect((err) => {
-    if (err){
-        console.error("Erreur de connexion: " + err.stack)
+
+db.connect((err) => {
+    if (err) {
+        console.error('Erreur de connexion à la base de données:', err);
         return;
     }
-    console.log("Connexion reussie à la bd!")
+    console.log('Connecté à la base de données MySQL');
 });
 
-connection.query("SELECT*FROM users ",(err,rows, fields) => {
-    if(err) throw err;
-    console.log("les données sont:" , rows)
-})
-app.listen(port, () => {
-    console.log("serveur est en ligne!");
-})
+app.post('/loginForm', (req, res) => {
+    const sql = 'SELECT * FROM login WHERE username = ? AND password = ?';
+    const { username, password } = req.body;
 
+    db.query(sql, [username, password], (err, data) => {
+        if (err) {
+            console.error('Erreur lors de la requête SQL:', err);
+            return res.status(500).json({ error: 'Erreur lors de la requête SQL' });
+        }
+        if (data.length > 0) {
+            return res.json({ message: "Connexion réussie" });
+        } else {
+            return res.status(404).json({ error: "Aucun enregistrement trouvé" });
+        }
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Serveur Express en cours d'exécution sur le port ${port}`);
+});

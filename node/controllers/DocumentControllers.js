@@ -3,14 +3,17 @@ exports.creatDocument = async (req, res) => {
     try {
       
         const Document = await Document.create({
-          Provinces: req.body.Province,
-          Communes: req.body.Communes,
-          intitulededocument: req.body.intitulededocument,
-          Responsables:req.body.Responsables,
-          Collaborateurs:req.body.Collaborateurs,
-          Bet:req.body.Bet,
-          Situation:req.body.Situation,
-          Document:req.body.Document,
+          provinces: req.body.province,
+          communes: req.body.communes,
+          centre: req.body.centres,
+          intitule_de_document: req.body.intitule_de_document,
+          responsables:req.body.responsables,
+          collaborateurs:req.body.collaborateurs,
+          bet:req.body.bet,
+          situations:req.body.situations,
+          observations: req.body.observations,
+          observations_chef_département: req.body.observations_chef_département,
+          piece_jointes:req.body.piece_jointes,
         
         });
         console.log("done");

@@ -1,5 +1,4 @@
-const {User} = require("../Config//migrations");
-
+const {User} = require("../models/userModels");
 
 exports.createUser = async (req, res) => {
     try {
@@ -8,7 +7,7 @@ exports.createUser = async (req, res) => {
           name: req.body.name,
           email : req.body.email,
           password : req.body.password,
-          number : req.body.number,
+          role : req.body.role,
         });
         console.log("done");
     
@@ -87,3 +86,27 @@ exports.deleteUser = async (req,res)=>{
         
     }
 }
+
+
+// const { User } = require("../models/userModels");
+
+// async function createUser(req, res) {
+//   try {
+//     const users = await User.create({
+//       name: req.body.name,
+//       email: req.body.email,
+//       password: req.body.password,
+//       role: req.body.role,
+//     });
+//     console.log("done");
+
+//     res.status(201).json({
+//       users: users,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).send(error);
+//   }
+// }
+
+// module.exports = { createUser };
