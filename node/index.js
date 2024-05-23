@@ -1,12 +1,12 @@
 const express = require("express");
 const mysql = require("mysql");
+
 const cors = require('cors');
 const port = process.env.PORT || 3001;
 const app = express();
 
-// Middleware pour analyser le corps JSON des requêtes
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -23,7 +23,23 @@ db.connect((err) => {
     console.log('Connecté à la base de données MySQL');
 });
 
-app.post('/loginForm', (req, res) => {
+app.get('/login', (req, res) => {
+    // Gérer l'authentification ici
+    // Vérifier les informations d'identification et renvoyer une réponse appropriée
+    res.json({ success: true });
+});
+
+app.get('/documents', (req, res) => {
+    db.query('SELECT * FROM documents', (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
+
+  app.listen(port, () => {
+    console.log(`Serveur démarré sur le port ${port}`);
+  });
+app.post('/login', (req, res) => {
     const sql = 'SELECT * FROM login WHERE username = ? AND password = ?';
     const { username, password } = req.body;
 
@@ -38,8 +54,5 @@ app.post('/loginForm', (req, res) => {
             return res.status(404).json({ error: "Aucun enregistrement trouvé" });
         }
     });
-});
+})
 
-app.listen(port, () => {
-    console.log(`Serveur Express en cours d'exécution sur le port ${port}`);
-});

@@ -11,14 +11,14 @@ const LoginPopup = () => {
   const modalRef = useRef();
 
 
-  const handleTogglePopup = () => {
-    setIsOpen(!isOpen);
-  };
+  // const handleTogglePopup = () => {
+  //   setIsOpen(!isOpen);
+  // };
   const handleLogin = () => {
    
     console.log('Connexion avec:', username, password);
     console.log('Mémoriser l\'identifiant:', rememberMe)
-    axios.post('http://localhost:3001/loginForm',{username,password})
+    axios.post('http://localhost:3001/login',{username,password})
     .then (res => console.log(res))
     .catch(err => console.log(err))
     
@@ -35,7 +35,9 @@ const LoginPopup = () => {
   };
   return (
     <div>
-      <button onClick={() => setIsOpen(true)} className= "button n-button">Se connecter</button>
+      <button onClick={handleLogin => setIsOpen(true)} className= "button n-button">Se connecter</button>
+    
+            <link to="/Table"></link>
       
       {isOpen && (
         <div className="popup"  onClick={handleClickOutside}>
@@ -59,6 +61,7 @@ const LoginPopup = () => {
             </label>
             <button onClick={handleLogin}>Se connecter</button>
             <button onClick={() => setIsOpen(false)}>Fermer</button>
+            <link to="/Table"></link>
 
 
             <label>
