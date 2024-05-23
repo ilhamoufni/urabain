@@ -9,7 +9,7 @@ const DocumentsTable = () => {
     useEffect(() => {
         const fetchDocuments = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/documents');
+                const response = await axios.get('http://localhost:3001/documents');
                 setDocuments(response.data);
             } catch (error) {
                 console.error('Erreur lors de la récupération des documents:', error);
