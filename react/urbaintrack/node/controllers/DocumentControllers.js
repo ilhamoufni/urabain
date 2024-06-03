@@ -1,4 +1,4 @@
-const { Document } = require("../Config/migrations");
+const { Document } = require("../models/index");
 
 const createDocument = async (req, res) => {
   try {
