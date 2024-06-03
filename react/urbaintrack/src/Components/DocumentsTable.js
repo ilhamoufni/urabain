@@ -1,11 +1,10 @@
-// DocumentsTable.js
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import './DocumentsTable.css';
 
 const DocumentsTable = () => {
     const [documents, setDocuments] = useState([]);
-
     useEffect(() => {
         const fetchDocuments = async () => {
             try {
@@ -20,6 +19,7 @@ const DocumentsTable = () => {
     }, []);
 
     return (
+        <div className="table-container">
         <table>
             <thead>
                 <tr>
@@ -56,6 +56,7 @@ const DocumentsTable = () => {
                 ))}
             </tbody>
         </table>
+        </div>
     );
 };
 

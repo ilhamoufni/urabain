@@ -1,7 +1,9 @@
 import React from 'react'
 import"./intro.css"
- import img1 from '../images/carte.png'
-const Intro = () => {
+import img1 from '../images/carte.png'
+import LoginPopup from './LoginPopup';
+import Navbar from './navbar';
+const Intro = ({ onLoginSuccess }) => {
     return (
         <div className="intro">
             <div className="i-left">
@@ -13,8 +15,9 @@ const Intro = () => {
             </div>
 
             </div>
-          
+            <LoginPopup onLoginSuccess={onLoginSuccess} />
                 <img src={img1} alt=""/>
+            <Navbar />
             
         </div>
     )

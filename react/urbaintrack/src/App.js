@@ -1,47 +1,61 @@
-import './App.css';
-import React , { useState }from "react";
-import Navbar from "./Components/navbar";
+// import './App.css';
+// import React , { useState }from "react";
+// import Navbar from "./Components/navbar";
+// import Intro from "./Components/intro";
+// import DocumentsTable from "./Components/DocumentsTable";
+// import { BrowserRouter as Router, Route,Routes} from 'react-router-dom';
+// import axios from 'axios';
+
+// function App() {
+//   const [loggedIn, setLoggedIn] = useState(false);
+  
+//   return (
+//     <Router>
+//       <Navbar />
+//       <Routes>
+//         <Route path="/" element={
+//           loggedIn ? <DocumentsTable /> : <Intro onLoginSuccess={() => setLoggedIn(true)} />
+//         } />
+//         {/* Ajoutez d'autres routes si nécessaire */}
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+} from "react-router-dom"
+
 import Intro from "./Components/intro";
-import LoginForm from "./Components/loginform";
+import LoginPopup from "./Components/LoginPopup";
 import DocumentsTable from "./Components/DocumentsTable";
-import { BrowserRouter as Router, Route,Routes, Link } from 'react-router-dom';
-import axios from 'axios';
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Intro/>,
+  },
+  {
+    path: "/login",
+    element: <LoginPopup />,
+  },
+  {
+    path: "/documents",
+    element: <DocumentsTable />,
+  },
+  {
+    path: "/register",
+    element: <register />,
+  }
+]);
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const handleLogin = async () => {
-    try {
-        const response = await axios.post('http://localhost:3001/login', {
-            // vos données de connexion
-        });
-        if (response.data.success) {
-            setLoggedIn(true);
-        }
-    } catch (error) {
-        console.error('Erreur lors de la connexion:', error);
-    }
-};
-
   return (
-    <Router>
-      <Navbar />
-      <Intro/>
-      <LoginForm />
-      <div>
-                {!loggedIn ? (
-                    <button onClick={handleLogin}>Se connecter</button>
-                ) : (
-                    <Routes>
-                        <Route exact path="/documents" component={DocumentsTable} />
-                        {/* Vous pouvez ajouter d'autres routes ici si nécessaire */}
-                    </Routes>
-                )}
-                {loggedIn && <Link to="/documents">Voir les documents</Link>}
-            </div>
-    </Router>
-  );
+    <div>
+<RouterProvider router={router}/>
+    </div>
+  )
 }
-
 export default App;
-
-
