@@ -23,12 +23,10 @@ const LoginPopup = ({ onLoginSuccess }) => {
       .post("http://localhost:3001/api/signin", { email: username, password })
       .then((res) => {
         if (res.data.message === "success") {
-
           // onLoginSuccess();
-
           navigate("/dDocumentsTable");
-        } else {
-          alert("Mot de passe incorrect");
+          console.log("Connexion avec:", username, password);
+          console.log("Mémoriser l'identifiant:", rememberMe);
         }
       })
       .catch((err) => {

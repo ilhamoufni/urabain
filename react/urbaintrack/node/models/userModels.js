@@ -1,6 +1,6 @@
-// const { Sequelize, DataTypes, Model } = require('sequelize');
-// const sequelize = require ("../Config/Dbconfig")
-// class User extends Model {}
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require ("../Config/Dbconfig")
+class User extends Model {}
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("User", {
