@@ -13,9 +13,9 @@ const LoginPopup = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log('Connexion avec:', username, password);
+    console.log('Connexion avec:',username, password);
     console.log('Mémoriser l\'identifiant:', rememberMe);
-    axios.post('http://localhost:3001/login', { username, password })
+    axios.post('http://localhost:3001/api/signin', { email:username, password })
       .then(res => {
         if (res.data.success) {
           onLoginSuccess();
