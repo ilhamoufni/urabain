@@ -15,11 +15,11 @@ const LoginPopup = ({ onLoginSuccess }) => {
   const handleLogin = () => {
     console.log('Connexion avec:',username, password);
     console.log('Mémoriser l\'identifiant:', rememberMe);
-    axios.post('http://localhost:3001/api/signin', { email:username, password })
+    axios.post('http://localhost:3001/api/signin', { email:username,password })
       .then(res => {
         if (res.data.success) {
           onLoginSuccess();
-          navigate('/dDocumentsTable');
+          navigate('/DocumentsTable');
         } else {
           alert('Mot de passe incorrect');
         }

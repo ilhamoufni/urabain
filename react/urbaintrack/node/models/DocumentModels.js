@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    Province: {
+    Provinces: {
       type: DataTypes.STRING,
       values: ["Beni Mellal", "Khouribga", "Azilal", "Fequih Ben Saleh"],
     },
@@ -75,7 +75,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
+    Centres:{ 
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     Intitulededocument: {
       type: DataTypes.STRING,
       values: ["PA", "PDAR", "SDAU"],
@@ -104,10 +107,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Document: {
-      type: DataTypes.BLOB,
+    Observations_chef_département:{
+      type: DataTypes.STRING,
       allowNull: false,
     },
+    Pièces_jointes:{
+      type: DataTypes.BLOB,
+      allowNull: false,
+    }
   });
 
   return Document;

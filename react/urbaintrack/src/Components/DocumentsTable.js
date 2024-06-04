@@ -24,34 +24,34 @@ const DocumentsTable = () => {
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>provinces</th>
-                    <th>communes</th>
-                    <th>centres</th>
-                    <th>intitule_de_documents</th>
-                    <th>responsables</th>
-                    <th>collaborateurs</th>
-                    <th>bet</th>
-                    <th>situations</th>
-                    <th>observations</th>
-                    <th>observations_chef_département</th>
-                    <th>piece_jointes</th>
+                    <th>Provinces</th>
+                    <th>Communes</th>
+                    <th>Centres</th>
+                    <th>Intitule_de_documents</th>
+                    <th>Responsables</th>
+                    <th>Collaborateurs</th>
+                    <th>Bet</th>
+                    <th>Situations</th>
+                    <th>Observations</th>
+                    <th>Observations_chef_département</th>
+                    <th>Pièces_jointes</th>
                 </tr>
             </thead>
             <tbody>
                 {documents.map((doc) => (
                     <tr key={doc.id}>
                         <td>{doc.id}</td>
-                        <td>{doc.provinces}</td>
-                        <td>{doc.communes}</td>
-                        <td>{doc.centres}</td>
-                        <td>{doc.intitule_de_documents}</td>
-                        <td>{doc.responsables}</td>
-                        <td>{doc.collaborateurs}</td>
-                        <td>{doc.bet}</td>
-                        <td>{doc.situations}</td>
-                        <td>{doc.observations}</td>
-                        <td>{doc.observations_chef_département}</td>
-                        <td>{doc.piece_jointes}</td>
+                        <td>{doc.Provinces}</td>
+                        <td>{doc.Communes}</td>
+                        <td>{doc.Centres}</td>
+                        <td>{doc.Intitule_de_documents}</td>
+                        <td>{doc.Responsables}</td>
+                        <td>{doc.Collaborateurs}</td>
+                        <td>{doc.Bet}</td>
+                        <td>{doc.Situations}</td>
+                        <td>{doc.Observations}</td>
+                        <td>{doc.Observations_chef_département}</td>
+                        <td>{doc.Pièces_jointes}</td>
                     </tr>
                 ))}
             </tbody>
