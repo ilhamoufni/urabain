@@ -2,7 +2,8 @@ require("dotenv").config();
 
 const express = require("express");
 
-// const path = require("path");
+const path = require("path");
+const fs = require("fs");
 
 var cors = require("cors");
 // const mysql = require("mysql");
@@ -25,6 +26,22 @@ app.get("/", (req, res) => {
 app.use("/api", authRouter);
 app.use("/api", documentsRouter);
 app.use("/api", userRouter);
+
+const pdfDirectory = path.join(__dirname, "pdfs");
+
+app.get('/pdfs/:folder/:filename', (req, res) => {
+  const folder = req.params.folder;
+  const filename = req.params.filename;
+  const filePath = path.join(pdfDirectory, folder, filename);
+
+  fs.access(filePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      res.status(404).send('PDF not found');
+    } else {
+      res.sendFile(filePath);
+    }
+  });
+});
 
 app.all("*", (req, res) => {
   res.status(404);

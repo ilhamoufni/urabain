@@ -7,10 +7,11 @@ const {
   deleteDocument,
 } = require("../controllers/DocumentControllers");
 const { verifyLogin } = require("../middlewares/adminmiddle");
+const verifyJwt = require("../middlewares/verifyJwt");
 
 router.post("/createDocument", verifyLogin, createDocument);
 
-router.get("/getDocuments", verifyLogin, findDocument);
+router.get("/getDocuments", verifyJwt ,findDocument);
 router.put("/updateDocument/:id", updateDocument);
 router.delete("/deleteDocument/:id", deleteDocument);
 
